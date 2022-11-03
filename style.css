@@ -1,0 +1,4 @@
+/* This give border-box to all elements and pseudo-elements */
+*, ::after, ::before {
+    box-sizing: border-box;
+}
