@@ -2,3 +2,11 @@
 *, ::after, ::before {
     box-sizing: border-box;
 }
+
+
+/* Setting up variables */
+
+:root{
+    --cell-size: 100px;
+    --mark-size: cal(var(--cell-size) * 0.9);
+}
