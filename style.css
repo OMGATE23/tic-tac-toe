@@ -8,5 +8,22 @@
 
 :root{
     --cell-size: 100px;
-    --mark-size: cal(var(--cell-size) * 0.9);
+    --mark-size: cal(var(--cell-size) * 0.9); 
+    /* mark size is going to depend upon the size of individual cell size hence using cal method */
+}
+
+/* Removed margin and added board styling and display */
+body{
+    margin: 0;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
 }
