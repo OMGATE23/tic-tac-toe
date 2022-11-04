@@ -2,6 +2,7 @@ const cellElement = document.querySelectorAll('[data-cell]')
 const board = document.querySelector('.board')
 const finalMessageElement = document.querySelector('.final-message-container')
 const finalMessageText = document.querySelector('.final-message')
+const restart = document.querySelector('#restart-button')
 
 let circleTurn
 const X_CLASS = 'x'
@@ -19,12 +20,20 @@ const WINNING_COMBINATIONS = [
 
 startGame()
 function startGame(){
+    finalMessageElement.classList.remove('show')
     circleTurn = false
     cellElement.forEach(cell => {
+        cell.classList.remove(CIRCLE_CLASS)
+        cell.classList.remove(X_CLASS)
+        cell.removeEventListener('click' , handleClick)
         cell.addEventListener('click' , handleClick, {once : true})
     })
     setBoardHoverClass()
 }
+
+restart.addEventListener('click' , startGame)
+
+
 
 function handleClick(e){
     cell = e.target
@@ -73,7 +82,7 @@ function endGame(draw){
     if(draw){
         finalMessageText.innerText = "It's a Draw"
     } else {
-        finalMessageText.innerText = `${circleTurn ? "X's" : "O's" } win`
+        finalMessageText.innerText = `${!circleTurn ? "X's" : "O's" } win`
     }
 
     finalMessageElement.classList.add('show')
