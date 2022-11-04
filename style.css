@@ -8,7 +8,7 @@
 
 :root{
     --cell-size: 100px;
-    --mark-size: cal(var(--cell-size) * 0.9); 
+    --mark-size: calc(var(--cell-size) * 0.9); 
     /* mark size is going to depend upon the size of individual cell size hence using cal method */
 }
 
@@ -26,4 +26,126 @@ body{
     justify-items: center;
     align-items: center;
     align-content: center;
+    background: black;
+}
+
+/* giving cell styling */
+
+.cell {
+    width: var(--cell-size);
+    aspect-ratio: 1/1;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* removing outer border of the board */
+
+.cell:nth-child(n){
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1){
+    border-left: none;
+}
+
+.cell:nth-child(3n + 3){
+    border-right: none;
+}
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9)
+{
+    border-bottom: none;
+}
+
+/* setting cursor not allowed when the cells are containing X or O */
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+/* setting CSS when the cell has X */
+
+.cell.x::after,
+.cell.x::before{
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * 0.15);
+    height: var(--mark-size);
+    background-color: white;
+}
+
+.cell.x::after {
+    transform: rotate(45deg);
+}
+
+.cell.x::before {
+    transform: rotate(-45deg);
+}
+
+/* setting a hover to show the current turn is of X */
+
+.board .cell:not(.x):not(.circle):hover{
+    cursor: pointer;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before{
+    cursor: pointer;
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * 0.15);
+    height: var(--mark-size);
+    background: #64748b;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after{
+    transform: rotate(45deg);
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before{
+    transform: rotate(-45deg);
+}
+
+/* setting CSS when the cell has O */
+
+.cell.circle::before{
+    content: '';
+    background-color: white;
+    width: var(--mark-size);
+    height: var(--mark-size);
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.circle::after{
+    content: '';
+    background-color: black;
+    width: calc(var(--mark-size) * 0.7);
+    height: calc(var(--mark-size) * 0.7);
+    position: absolute;
+    border-radius: 50%;
+}
+
+/*setting a hover to show the current turn is of O  */
+
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    background-color: #64748b;
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+.board.circle .cell:not(.x):not(.circle):hover::after{
+    background-color: black;
+    width: calc(var(--mark-size) * 0.7);
+    height: calc(var(--mark-size) * 0.7);
 }
