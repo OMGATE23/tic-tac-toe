@@ -34,7 +34,7 @@ function handleClick(e){
     swapTurn()
     setBoardHoverClass()
     if(checkWin(currentClass)){
-        console.log( currentClass, 'won')
+        endGame(false)
     }
 }
 
@@ -63,4 +63,14 @@ function checkWin(currentClass){
             return cellElement[index].classList.contains(currentClass)
         })
     })
+}
+
+function endGame(draw){
+    if(draw){
+
+    } else {
+        finalMessageText.innerText = `${circleTurn ? "X's" : "O's" } win`
+    }
+
+    finalMessageElement.classList.add('show')
 }
