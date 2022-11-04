@@ -33,6 +33,9 @@ function handleClick(e){
     placeMark(cell, currentClass)
     swapTurn()
     setBoardHoverClass()
+    if(checkWin(currentClass)){
+        console.log( currentClass, 'won')
+    }
 }
 
 function placeMark(cell, currentClass){
@@ -52,4 +55,12 @@ function setBoardHoverClass(){
     } else{
         board.classList.add(X_CLASS)
     }
+}
+
+function checkWin(currentClass){
+    return WINNING_COMBINATIONS.some(combination => {
+        return combination.every(index => {
+            return cellElement[index].classList.contains(currentClass)
+        })
+    })
 }
